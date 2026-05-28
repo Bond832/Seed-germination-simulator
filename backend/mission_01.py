@@ -35,7 +35,14 @@
 # foundation of your entire simulator is in place.
 # ───────────────────────────────────────────────────────
 def classify_ph(ph):
-    # YOUR CODE HERE ↓
+
+    if ph < 6.0:
+        return  acidic 
+    elif ph <= 7.5:
+        return  neutral
+    else:
+        return alkaline
+
     pass
 
 
@@ -63,7 +70,14 @@ def classify_ph(ph):
 # it actually gives useful scientific advice.
 # ───────────────────────────────────────────────────────
 def predict_growth(ph):
-    # YOUR CODE HERE ↓
+
+    if ph < 4.5 or ph > 8.5:
+        return The seed will likely fail.
+    elif ph < 6.0 or ph = 7.5:
+        return The seed may struggle.  
+    else 
+        return The seed will germinate well.
+    
     pass
 
 
@@ -91,17 +105,22 @@ def predict_growth(ph):
 print("🌱 Seed Germination pH Simulator")
 print("=" * 35)
 
-# Replace this fixed value with your input() code:
-ph = 6.5
+while True:
+    try:
+        user_input = input("Enter pH value (0.0 - 14.0): ")
+        ph = float(user_input)
+        break  
+    except ValueError:
+        print("❌ Invalid input. Please enter a valid decimal number (e.g., 7.0).")
 
 # Call your functions and print the results
-water_type = classify_ph(ph)
+water_type = classify_ph(ph) 
 prediction = predict_growth(ph)
 
+print("-" * 35)
 print(f"pH entered  : {ph}")
 print(f"Water type  : {water_type}")
 print(f"Prediction  : {prediction}")
-
 
 # ════════════════════════════════════════════════════
 # 🧪 MISSION 01 — CHECK YOUR WORK
