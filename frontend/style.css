@@ -1,0 +1,237 @@
+/* ═══════════════════════════════════════════════════════
+   MISSION 04A — Styling the Simulator
+   Session 5 | Branch: mission-04-yourname
+   ═══════════════════════════════════════════════════════
+
+   WHAT IS CSS?
+   CSS makes your HTML look good. Without CSS, everything
+   is plain black text on a white background. CSS adds
+   colors, spacing, fonts, borders, and animations.
+
+   BY THE END OF THIS FILE YOU WILL HAVE:
+   → A visually polished simulator that looks professional
+   → Smooth color transitions when the pH changes
+   → An animated plant stem that grows during the simulation
+   ═══════════════════════════════════════════════════════ */
+
+/* ── Base Reset ── */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ───────────────────────────────────────────────────────
+   TODO 1: Style the body
+
+   WHAT: Set a background color, font family, and a smooth
+         color transition so the background fades when pH changes.
+
+   WHY: The background color changes live as the user moves
+        the slider (JavaScript does this). The transition: 0.5s
+        makes it fade smoothly instead of jumping instantly.
+        This is what makes the app feel alive and responsive.
+
+   AFTER THIS TODO: The page has a base color and smooth
+   background transitions ready for JavaScript to control.
+   ─────────────────────────────────────────────────────── */
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: #f0faf4;        /* default neutral green */
+  color: #1a3a2a;
+  min-height: 100vh;
+  /* TODO: add transition for background color ↓ */
+}
+
+.app {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 40px 24px;
+}
+
+/* ── Header ── */
+header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+header h1 {
+  font-size: 30px;
+  font-weight: 700;
+  color: #2d6a4f;
+}
+
+header p {
+  font-size: 15px;
+  color: #5a8a6a;
+  margin-top: 6px;
+}
+
+/* ── Controls section ── */
+.controls {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* ───────────────────────────────────────────────────────
+   TODO 2: Style the pH slider
+
+   WHAT: Make the range input look good — set its width,
+         cursor style, and optionally an accent color.
+
+   WHY: The default browser slider looks very plain.
+        Styling it makes the app feel polished and the
+        slider easier to interact with.
+
+   AFTER THIS TODO: The pH slider is wide, styled, and
+   easy to grab and move.
+   ─────────────────────────────────────────────────────── */
+input[type="range"] {
+  width: 100%;
+  /* TODO: add cursor: pointer, accent-color, height ↓ */
+}
+
+.ph-display {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+}
+
+#phDisplay {
+  font-size: 32px;
+  font-weight: 700;
+  color: #2d6a4f;
+}
+
+#phLabel {
+  font-size: 15px;
+  color: #5a8a6a;
+}
+
+/* ───────────────────────────────────────────────────────
+   TODO 3: Style the Run button
+
+   WHAT: Make the button full width, green, bold, with
+         a hover effect that gives feedback when hovered.
+
+   WHY: The button is the most important action on the page.
+        It needs to look clickable and satisfying to press.
+        A hover effect (like changing color or moving up
+        slightly) tells the user "yes, click me."
+
+   AFTER THIS TODO: The Run button looks like the main
+   action — inviting and clear.
+   ─────────────────────────────────────────────────────── */
+#runBtn {
+  width: 100%;
+  padding: 16px;
+  font-size: 16px;
+  font-weight: 700;
+  background: #3fb950;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-bottom: 24px;
+  /* TODO: add transition and :hover styles below ↓ */
+}
+
+/* TODO: add #runBtn:hover here ↓ */
+
+
+/* ── Plant visual ── */
+.plant-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 24px 0;
+  height: 200px;
+  justify-content: flex-end;
+}
+
+#plantLeaf {
+  font-size: 28px;
+  margin-bottom: -4px;
+}
+
+/* ───────────────────────────────────────────────────────
+   TODO 4: Style the plant stem
+
+   WHAT: Give the stem a width, a green color, rounded
+         corners, and — most importantly — a height transition.
+
+   WHY: JavaScript sets the stem's height to grow it.
+        Without transition: height 0.5s ease, the plant
+        would jump to full height instantly. The transition
+        is what creates the animation of growing day by day.
+
+   AFTER THIS TODO: The plant stem will smoothly animate
+   taller each time JavaScript updates its height property.
+   ─────────────────────────────────────────────────────── */
+#plantStem {
+  width: 8px;
+  height: 0px;                 /* JavaScript animates this */
+  background: #2d6a4f;
+  border-radius: 4px;
+  /* TODO: add transition: height 0.5s ease ↓ */
+}
+
+.soil {
+  width: 160px;
+  height: 20px;
+  background: #6b4226;
+  border-radius: 10px;
+  margin-top: 4px;
+}
+
+/* ── Results section ── */
+.results {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  margin-top: 24px;
+}
+
+.results h2 {
+  margin-bottom: 16px;
+  font-size: 18px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+/* ───────────────────────────────────────────────────────
+   TODO 5: Style the table headers and rows
+
+   WHAT: Add background color to headers, padding to cells,
+         borders between rows, and alternating row colors.
+
+   WHY: A styled table is much easier to read than a plain
+        one. Alternating row colors (called "zebra stripes")
+        help the eye track across a row without getting lost.
+        This is standard practice in data tables everywhere.
+
+   AFTER THIS TODO: Your results table looks like a real
+   scientific data log — clear, readable, and professional.
+   ─────────────────────────────────────────────────────── */
+th {
+  /* TODO: add background, color, padding, text-align ↓ */
+}
+
+td {
+  /* TODO: add padding and border-bottom ↓ */
+}
+
+/* TODO: alternating row colors ↓ */
+tr:nth-child(even) td {
+
+}

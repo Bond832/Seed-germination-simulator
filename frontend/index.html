@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>🌱 Seed Germination Simulator</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<!--
+  ═══════════════════════════════════════════════════════
+  MISSION 04A — Build the Interface
+  Session 5 | Branch: mission-04-yourname
+  ═══════════════════════════════════════════════════════
+
+  WHAT IS HTML?
+  HTML is the skeleton of your app. It defines what
+  exists on the page — the slider, the button, the table.
+  CSS (style.css) makes it look good.
+  JavaScript (app.js) makes it work.
+
+  BY THE END OF THIS FILE YOU WILL HAVE:
+  → A complete page structure your JavaScript can talk to
+  → Every element the simulation needs to display results
+  ═══════════════════════════════════════════════════════
+-->
+
+<body>
+  <div class="app">
+
+    <header>
+      <h1>🌱 Seed Germination pH Simulator</h1>
+      <p>How does water pH affect plant growth?</p>
+    </header>
+
+
+    <!-- ───────────────────────────────────────────────
+    TODO 1: pH Slider
+
+    WHAT: Add an <input type="range"> that lets the user
+          pick a pH value between 1 and 14.
+          Display the current value in the #phDisplay span.
+
+    WHY: The slider is the main control of the app.
+         Everything — the background color, the plant growth,
+         the results table — reacts to this slider value.
+         Without it, the user can't interact with anything.
+
+    ATTRIBUTES TO SET ON YOUR INPUT:
+      type="range"
+      id="phSlider"
+      min="1"
+      max="14"
+      step="0.1"
+      value="7"
+
+    AFTER THIS TODO: The user has a control to set the pH.
+    JavaScript (app.js TODO 1) will make it update the display.
+    ─────────────────────────────────────────────────── -->
+    <section class="controls">
+      <label for="phSlider">Water pH Level:</label>
+
+      <!-- YOUR SLIDER INPUT HERE ↓ -->
+
+      <div class="ph-display">
+        <span id="phDisplay">7.0</span>
+        <span id="phLabel">Neutral</span>
+      </div>
+    </section>
+
+
+    <!-- ───────────────────────────────────────────────
+    TODO 2: Run Simulation Button
+
+    WHAT: Add a <button> that calls runSimulation() when clicked.
+
+    WHY: This triggers everything — the plant animation,
+         the day-by-day table, the whole 7-day loop.
+         Without this button, the simulation never starts.
+
+    ATTRIBUTES:
+      id="runBtn"
+      onclick="runSimulation()"
+
+    AFTER THIS TODO: Clicking the button will eventually
+    trigger the full simulation (once app.js is done).
+    ─────────────────────────────────────────────────── -->
+
+    <!-- YOUR BUTTON HERE ↓ -->
+
+
+    <!-- ───────────────────────────────────────────────
+    TODO 3: Plant Visual
+
+    WHAT: Add a container with a stem div and a soil div.
+          The stem starts at height 0 and JavaScript will
+          animate it to grow taller during the simulation.
+
+    WHY: This is what makes your simulator feel alive.
+         Instead of just a table of numbers, the user
+         watches a plant physically grow on screen — just
+         like watching your real experiment day by day.
+
+    REQUIRED IDs (JavaScript looks for these exactly):
+      id="plantStem"   ← JS sets its height to grow the plant
+      id="plantLeaf"   ← shows at the top of the stem
+
+    AFTER THIS TODO: The visual plant exists on the page.
+    JavaScript (app.js TODO 5) will animate it growing.
+    ─────────────────────────────────────────────────── -->
+    <div class="plant-container">
+      <span id="plantLeaf">🌿</span>
+
+      <!-- YOUR STEM DIV HERE ↓ -->
+
+      <div class="soil"></div>
+    </div>
+
+
+    <!-- ───────────────────────────────────────────────
+    TODO 4: Results Table
+
+    WHAT: Add a <table> with a <thead> containing column
+          headers and an empty <tbody> that JavaScript fills in.
+
+    WHY: This is your digital lab notebook. Every row is
+         one day of the experiment — just like the table
+         you filled in during science class, but generated
+         automatically by code.
+
+    COLUMN HEADERS NEEDED:
+      Day | Height (cm) | Health Status
+
+    REQUIRED IDs:
+      id="resultsTable"   ← on the <table>
+      id="resultsBody"    ← on the <tbody> (JS fills this)
+
+    AFTER THIS TODO: The table structure exists. JavaScript
+    (app.js TODO 5) will add one row per day automatically.
+    ─────────────────────────────────────────────────── -->
+    <section class="results">
+      <h2>📊 Daily Results</h2>
+      <table id="resultsTable">
+        <thead>
+          <tr>
+            <!-- YOUR COLUMN HEADERS HERE ↓ -->
+          </tr>
+        </thead>
+        <tbody id="resultsBody">
+          <!-- JavaScript fills this automatically -->
+        </tbody>
+      </table>
+    </section>
+
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
