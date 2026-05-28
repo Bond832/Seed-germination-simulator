@@ -75,7 +75,7 @@ def predict_growth(ph):
         return The seed will likely fail.
     elif ph < 6.0 or ph = 7.5:
         return The seed may struggle.  
-    else 
+    else :
         return The seed will germinate well.
     
     pass
