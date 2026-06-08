@@ -22,28 +22,29 @@ def daily_growth_rate(ph):
 
 def health_status(ph):
     if 6.0 <= ph <= 7.0:
-        return "Excellent 🟢"
+        return "Excellent"
     elif 5.5 <= ph < 6.0:
-        return "Fair 🟡"
+        return "Fair"
     elif 7.0 < ph <= 8.0:
-        return "Poor 🟠"
+        return "Poor"
     else:
-        return "Dead 🔴"
+        return "Dead"
 
 
 # ───────────────────────────────────────────────────────
 # TODO 1: Build the 7-day simulation loop
 # ───────────────────────────────────────────────────────
+
 def simulate_growth(ph, days=7):
-    print(f"\n🌱 Starting experiment at pH {ph}")
+    print(f"\nStarting experiment at pH {ph}")
     print("=" * 45)
 
     if not will_germinate(ph):
-        print("❌ Seed did not germinate at this pH level.")
-        print(f"   pH {ph} is outside the safe range (5.5 – 7.5)")
+        print("Seed did not germinate at this pH level.")
+        print(f"pH {ph} is outside the safe range (5.5 – 7.5)")
         return []
 
-    print("✅ Seed germinated! Simulating growth...\n")
+    print("Seed germinated! Simulating growth...\n")
     print(f"{'Day':<5} | {'Height (cm)':<12} | Health")
     print("-" * 35)
 
@@ -72,18 +73,18 @@ def simulate_growth(ph, days=7):
 # TODO 2: Run two experiments and compare
 # ───────────────────────────────────────────────────────
 
-print("🔬 EXPERIMENT A — Plain water (pH 6.5)")
+print("EXPERIMENT A — Plain water (pH 6.5)")
 results_a = simulate_growth(6.5)
 
-print("\n🔬 EXPERIMENT B — Detergent water (change this pH!)")
-results_b = simulate_growth(3.0)  # Replace with your actual detergent pH
+print("\nEXPERIMENT B — Detergent water (change this pH!)")
+results_b = simulate_growth(3.0)
 
 
 # ───────────────────────────────────────────────────────
-# TODO 3: Print a final comparison summary
+# TODO 3: Final comparison
 # ───────────────────────────────────────────────────────
 
-print("\n📊 FINAL COMPARISON")
+print("\nFINAL COMPARISON")
 print("=" * 45)
 
 if len(results_a) > 0:
@@ -98,12 +99,12 @@ else:
 
 
 # ════════════════════════════════════════════════════
-# 🧪 MISSION 03 — CHECK YOUR WORK
+# CHECKING YOUR WORK
 # ════════════════════════════════════════════════════
 
-print("\n" + "─" * 45)
-print("🧪 CHECKING YOUR WORK...")
-print("─" * 45)
+print("\n" + "-" * 45)
+print("CHECKING YOUR WORK...")
+print("-" * 45)
 
 passed = 0
 total = 0
@@ -112,70 +113,65 @@ def check(label, got, expected):
     global passed, total
     total += 1
     if got == expected:
-        print(f"  ✅  {label}")
-        print(f"       got: '{got}'")
+        print(f"PASS {label}")
+        print(f"     got: '{got}'")
         passed += 1
     else:
-        print(f"  ❌  {label}")
-        print(f"       expected: '{expected}'  |  got: '{got}'")
+        print(f"FAIL {label}")
+        print(f"     expected: '{expected}' | got: '{got}'")
 
-# ── simulate_growth checks ────────────────────────────
-print("\n📌 Testing simulate_growth():")
 
-# Test 1: returns a list
+print("\nTesting simulate_growth():")
+
+# Test 1
 result_65 = simulate_growth(6.5)
 total += 1
 if isinstance(result_65, list):
-    print(f"  ✅  simulate_growth(6.5) returns a list")
+    print("PASS simulate_growth(6.5) returns a list")
     passed += 1
 else:
-    print(f"  ❌  simulate_growth(6.5) should return a list, got: {type(result_65)}")
+    print(f"FAIL simulate_growth(6.5) should return list, got {type(result_65)}")
 
-# Test 2: returns 7 days
+# Test 2
 total += 1
 if len(result_65) == 7:
-    print(f"  ✅  simulate_growth(6.5) returns 7 days of results")
+    print("PASS returns 7 days of results")
     passed += 1
 else:
-    print(f"  ❌  expected 7 days, got {len(result_65)}")
+    print(f"FAIL expected 7 days, got {len(result_65)}")
 
-# Test 3: day 7 height is correct (7 × 1.2 = 8.4)
+# Test 3
 total += 1
 if result_65 and round(result_65[-1]["height"], 1) == 8.4:
-    print(f"  ✅  Day 7 height at pH 6.5 → 8.4 cm")
+    print("PASS correct final height (8.4 cm)")
     passed += 1
 else:
-    got_h = result_65[-1]["height"] if result_65 else "no results"
-    print(f"  ❌  Day 7 height should be 8.4 cm, got: {got_h}")
+    got = result_65[-1]["height"] if result_65 else None
+    print(f"FAIL expected 8.4 cm, got {got}")
 
-# Test 4: failed experiment returns empty list
+# Test 4
 result_bad = simulate_growth(3.0)
 total += 1
 if result_bad == []:
-    print(f"  ✅  simulate_growth(3.0) returns [] — seed didn't germinate")
+    print("PASS failed germination returns empty list")
     passed += 1
 else:
-    print(f"  ❌  simulate_growth(3.0) should return [], got: {result_bad}")
+    print(f"FAIL expected [], got {result_bad}")
 
-# Test 5: each result has day, height, status keys
+# Test 5
 total += 1
 if result_65 and all(k in result_65[0] for k in ["day", "height", "status"]):
-    print(f"  ✅  Each result has 'day', 'height', and 'status' keys")
+    print("PASS correct dictionary structure")
     passed += 1
 else:
-    print(f"  ❌  Each result dict should have 'day', 'height', 'status' keys")
+    print("FAIL missing required keys")
 
-# ── Final score ───────────────────────────────────────
-print("\n" + "─" * 45)
+
+print("\n" + "-" * 45)
 if passed == total:
-    print(f"  🎉 {passed}/{total} passed — Mission 03 Complete!")
-    print("  Your simulator is alive! The plant grows day by day 🌱🚀")
-    print("\n  git add backend/mission_03.py")
-    print("  git commit -m \"Mission 03: 7-day simulation loop complete\"")
-    print("  git push origin mission-03-yourname")
+    print(f"SUCCESS: {passed}/{total} tests passed — Mission 03 Complete!")
 elif passed >= total // 2:
-    print(f"  🔥 {passed}/{total} passed — Almost! Check the ❌ above.")
+    print(f"{passed}/{total} passed — Almost there!")
 else:
-    print(f"  💪 {passed}/{total} passed — Keep going!")
-    print("  Tip: make sure your loop appends a dict to results each day.")
-print("─" * 45)
+    print(f"{passed}/{total} passed — Keep improving!")
+print("-" * 45)
