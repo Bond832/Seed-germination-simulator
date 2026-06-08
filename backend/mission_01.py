@@ -2,104 +2,35 @@
 # MISSION 01 — What's Your Water?
 # Branch: mission-01-yourname
 # ═══════════════════════════════════════════════════════
-#
-# SCIENCE CONNECTION:
-# In your experiment, you measured the pH of detergent
-# before watering the seeds. This mission does the same
-# thing in code — it takes a pH value and tells the user
-# exactly what kind of water it is and what will happen
-# to their seed.
-#
-# BY THE END OF THIS MISSION YOU WILL HAVE:
-# → A working Python program that reads input and makes decisions
-# → Your first real functions that other missions will use
-# ═══════════════════════════════════════════════════════
-
 
 # ───────────────────────────────────────────────────────
 # TODO 1: classify_ph(ph)
-#
-# WHAT: Write a function that takes a pH number and returns
-#       a string describing what type of water it is.
-#
-# WHY: Every other mission depends on this. Mission 02 uses
-#      it to decide if a seed survives. Mission 04 uses it
-#      to color the background of the app.
-#
-# RULES:
-#   pH < 6.0          → return "acidic"
-#   pH 6.0 up to 7.5  → return "neutral"
-#   pH > 7.5          → return "alkaline"
-#
-# AFTER THIS TODO: You can tell any pH value apart — the
-# foundation of your entire simulator is in place.
 # ───────────────────────────────────────────────────────
 def classify_ph(ph):
 
     if ph < 6.0:
-        return  acidic 
+        return "acidic"
     elif ph <= 7.5:
-        return  neutral
+        return "neutral"
     else:
-        return alkaline
-
-    pass
+        return "alkaline"
 
 
 # ───────────────────────────────────────────────────────
 # TODO 2: predict_growth(ph)
-#
-# WHAT: Write a function that returns a helpful message
-#       predicting what will happen to the seed at this pH.
-#
-# WHY: This is the first time your program "talks" to the
-#      user like a scientist. It makes the simulator feel
-#      real and informative, not just a number cruncher.
-#
-# HINT: Think about what you observed in science class.
-#   - What happened to seeds watered with strong detergent?
-#   - What happened to seeds watered with plain water?
-#   Use that knowledge to write your messages.
-#
-# EXAMPLE return values:
-#   "The seed will germinate well! 🌱 pH is in the optimal range."
-#   "The seed may struggle. 🟡 Water is too acidic."
-#   "The seed will likely fail. 🔴 This pH is too extreme."
-#
-# AFTER THIS TODO: Your program doesn't just classify —
-# it actually gives useful scientific advice.
 # ───────────────────────────────────────────────────────
 def predict_growth(ph):
 
     if ph < 4.5 or ph > 8.5:
-        return The seed will likely fail.
-    elif ph < 6.0 or ph = 7.5:
-        return The seed may struggle.  
-    else :
-        return The seed will germinate well.
-    
-    pass
+        return "The seed will likely fail. 🔴 This pH is too extreme."
+    elif ph < 6.0 or ph > 7.5:
+        return "The seed may struggle. 🟡 Water is outside the optimal range."
+    else:
+        return "The seed will germinate well! 🌱 pH is in the optimal range."
 
 
 # ───────────────────────────────────────────────────────
 # TODO 3: Get input safely from the user
-#
-# WHAT: Ask the user to type a pH value. Convert it to a
-#       float (decimal number). If they type a word like
-#       "hello", catch the error and ask again.
-#
-# WHY: Real programs never crash on bad input. A user
-#      typing the wrong thing should get a helpful message,
-#      not a scary error. This is called "input validation"
-#      and every professional developer does it.
-#
-# TOOLS TO USE:
-#   input("Enter pH: ")   ← asks the user to type something
-#   float(...)            ← converts text to a decimal number
-#   try / except          ← catches errors before they crash
-#
-# AFTER THIS TODO: Your program is bulletproof — it handles
-# mistakes gracefully and keeps running no matter what.
 # ───────────────────────────────────────────────────────
 
 print("🌱 Seed Germination pH Simulator")
@@ -109,12 +40,12 @@ while True:
     try:
         user_input = input("Enter pH value (0.0 - 14.0): ")
         ph = float(user_input)
-        break  
+        break
     except ValueError:
         print("❌ Invalid input. Please enter a valid decimal number (e.g., 7.0).")
 
 # Call your functions and print the results
-water_type = classify_ph(ph) 
+water_type = classify_ph(ph)
 prediction = predict_growth(ph)
 
 print("-" * 35)
