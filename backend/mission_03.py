@@ -2,28 +2,13 @@
 # MISSION 03 — Watch It Grow!
 # Branch: mission-03-yourname
 # ═══════════════════════════════════════════════════════
-#
-# SCIENCE CONNECTION:
-# You measured your real plant every day for 7 days and
-# wrote it in your notebook. This mission simulates those
-# exact 7 days in code — day by day, height by height.
-# At the end, you'll compare your simulation to your
-# real data. Do they match?
-#
-# BY THE END OF THIS MISSION YOU WILL HAVE:
-# → A fully working Python simulation of your experiment
-# → A dramatic day-by-day printout with time delays
-# → A comparison between two different pH experiments
-# ═══════════════════════════════════════════════════════
 
 import time
 
-# ── Copy your functions from Mission 02 here ─────────
-# (will_germinate, daily_growth_rate, health_status)
-# These are the building blocks — Mission 03 uses all three.
+# ── Functions from Mission 02 ─────────────────────────
 
 def will_germinate(ph):
-    return 5.5 <= ph <= 7.5          # ← replace with your Mission 02 answer
+    return 5.5 <= ph <= 7.5
 
 def daily_growth_rate(ph):
     if 6.0 <= ph <= 7.0:
@@ -36,34 +21,18 @@ def daily_growth_rate(ph):
         return 0.0
 
 def health_status(ph):
-    pass                             # ← paste your Mission 02 answer here
+    if 6.0 <= ph <= 7.0:
+        return "Excellent 🟢"
+    elif 5.5 <= ph < 6.0:
+        return "Fair 🟡"
+    elif 7.0 < ph <= 8.0:
+        return "Poor 🟠"
+    else:
+        return "Dead 🔴"
 
 
 # ───────────────────────────────────────────────────────
 # TODO 1: Build the 7-day simulation loop
-#
-# WHAT: Write a function that simulates 7 days of plant
-#       growth at a given pH. Each day, the plant grows
-#       by the daily rate and prints its current state.
-#
-# WHY: This is the core of the entire project. Every
-#      button click in the JavaScript frontend (Mission 04)
-#      is recreating this exact logic — but visually.
-#      Getting this right in Python first makes Mission 04
-#      much easier to build.
-#
-# YOUR FUNCTION MUST:
-#   1. Check will_germinate() — if False, print a message and return []
-#   2. Start with height = 0.0
-#   3. Loop through days 1 to 7
-#   4. Each day: add daily_growth_rate() to height
-#   5. Print: day number, current height (1 decimal), health status
-#   6. Append {"day": day, "height": height, "status": status} to a list
-#   7. Use time.sleep(0.5) between days — makes it feel dramatic!
-#   8. Return the list of results
-#
-# AFTER THIS TODO: You have a fully working science
-# experiment simulator. Type in any pH and watch it grow.
 # ───────────────────────────────────────────────────────
 def simulate_growth(ph, days=7):
     print(f"\n🌱 Starting experiment at pH {ph}")
@@ -82,56 +51,50 @@ def simulate_growth(ph, days=7):
     rate = daily_growth_rate(ph)
     results = []
 
-    # YOUR LOOP HERE ↓
-    # for day in range(1, days + 1):
-    #     ...
+    for day in range(1, days + 1):
+        height += rate
+        status = health_status(ph)
+
+        print(f"{day:<5} | {height:<12.1f} | {status}")
+
+        results.append({
+            "day": day,
+            "height": height,
+            "status": status
+        })
+
+        time.sleep(0.5)
 
     return results
 
 
 # ───────────────────────────────────────────────────────
 # TODO 2: Run two experiments and compare
-#
-# WHAT: Call simulate_growth() twice — once with plain
-#       water (pH 6.5) and once with strong detergent
-#       (use the pH value you actually measured in class).
-#
-# WHY: This mirrors your real experiment exactly.
-#      Seeing both results side by side — just like your
-#      notebook — is what makes this simulator meaningful.
-#
-# AFTER THIS TODO: Your simulator produces a full
-# comparison, just like your science lab report.
 # ───────────────────────────────────────────────────────
 
 print("🔬 EXPERIMENT A — Plain water (pH 6.5)")
 results_a = simulate_growth(6.5)
 
 print("\n🔬 EXPERIMENT B — Detergent water (change this pH!)")
-results_b = simulate_growth(3.0)      # ← replace 3.0 with your actual detergent pH
+results_b = simulate_growth(3.0)  # Replace with your actual detergent pH
 
 
 # ───────────────────────────────────────────────────────
-# TODO 3 (BONUS): Print a final comparison summary
-#
-# WHAT: After both experiments, print a clean summary
-#       showing the final height of each experiment.
-#
-# WHY: This is what a scientist would write in the
-#      conclusion of their lab report. "At pH 6.5 the
-#      plant reached X cm. At pH Y it reached Z cm."
-#
-# AFTER THIS TODO: Your simulation has a proper scientific
-# conclusion — just like your real experiment did.
+# TODO 3: Print a final comparison summary
 # ───────────────────────────────────────────────────────
 
 print("\n📊 FINAL COMPARISON")
 print("=" * 45)
-# YOUR SUMMARY CODE HERE ↓
-# Hint: the last item in results_a has the day 7 height
-# if len(results_a) > 0:
-#     print(f"Experiment A final height: {results_a[-1]['height']} cm")
 
+if len(results_a) > 0:
+    print(f"Experiment A final height: {results_a[-1]['height']:.1f} cm")
+else:
+    print("Experiment A: Seed did not germinate")
+
+if len(results_b) > 0:
+    print(f"Experiment B final height: {results_b[-1]['height']:.1f} cm")
+else:
+    print("Experiment B: Seed did not germinate")
 
 
 # ════════════════════════════════════════════════════
