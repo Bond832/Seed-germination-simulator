@@ -1,8 +1,11 @@
+# ═══════════════════════════════════════════════════════
+# MISSION 03 — Watch It Grow!
+# Branch: mission-03-yourname
+# ═══════════════════════════════════════════════════════
+
 import time
 
-# ── Copy your functions from Mission 02 here ─────────
-# (will_germinate, daily_growth_rate, health_status)
-# These are the building blocks — Mission 03 uses all three.
+# ── Functions from Mission 02 ─────────────────────────
 
 def will_germinate(ph):
     return 5.5 <= ph <= 7.5
@@ -19,11 +22,13 @@ def daily_growth_rate(ph):
 
 def health_status(ph):
     if 6.0 <= ph <= 7.0:
-        return "Healthy 🟢"
-    elif 5.5 <= ph < 6.0 or 7.0 < ph <= 8.0:
-        return "Struggling 🟡"
+        return "Excellent 🟢"
+    elif 5.5 <= ph < 6.0:
+        return "Fair 🟡"
+    elif 7.0 < ph <= 8.0:
+        return "Poor 🟠"
     else:
-        return "Failed 🔴"
+        return "Dead 🔴"
 
 
 # ───────────────────────────────────────────────────────
@@ -44,23 +49,20 @@ def simulate_growth(ph, days=7):
 
     height = 0.0
     rate = daily_growth_rate(ph)
-    status = health_status(ph)
     results = []
 
-    # YOUR LOOP HERE ↓
     for day in range(1, days + 1):
         height += rate
-        # Format height to 1 decimal place to keep the layout clean
+        status = health_status(ph)
+
         print(f"{day:<5} | {height:<12.1f} | {status}")
-        
-        # Keep track of daily stats in a dictionary
+
         results.append({
             "day": day,
-            "height": round(height, 2),
+            "height": height,
             "status": status
         })
-        
-        # Add a realistic, dramatic pause between days
+
         time.sleep(0.5)
 
     return results
@@ -74,26 +76,25 @@ print("🔬 EXPERIMENT A — Plain water (pH 6.5)")
 results_a = simulate_growth(6.5)
 
 print("\n🔬 EXPERIMENT B — Detergent water (change this pH!)")
-# Real household detergent is usually basic, around pH 9.0
-results_b = simulate_growth(9.0)      
+results_b = simulate_growth(3.0)  # Replace with your actual detergent pH
 
 
 # ───────────────────────────────────────────────────────
-# TODO 3 (BONUS): Print a final comparison summary
+# TODO 3: Print a final comparison summary
 # ───────────────────────────────────────────────────────
 
 print("\n📊 FINAL COMPARISON")
 print("=" * 45)
 
 if len(results_a) > 0:
-    print(f"Experiment A (Plain Water, pH 6.5) final height: {results_a[-1]['height']:.1f} cm")
+    print(f"Experiment A final height: {results_a[-1]['height']:.1f} cm")
 else:
-    print("Experiment A did not germinate.")
+    print("Experiment A: Seed did not germinate")
 
 if len(results_b) > 0:
-    print(f"Experiment B (Detergent, pH 9.0) final height: {results_b[-1]['height']:.1f} cm")
+    print(f"Experiment B final height: {results_b[-1]['height']:.1f} cm")
 else:
-    print("Experiment B (Detergent, pH 9.0) did not germinate ❌")
+    print("Experiment B: Seed did not germinate")
 
 
 # ════════════════════════════════════════════════════
