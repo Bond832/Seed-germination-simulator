@@ -36,8 +36,7 @@
 # decision about whether an experiment will work.
 # ───────────────────────────────────────────────────────
 def will_germinate(ph):
-    # YOUR CODE HERE ↓
-    pass
+    return 5.5 <= ph <= 7.5
 
 
 # ───────────────────────────────────────────────────────
@@ -61,8 +60,14 @@ def will_germinate(ph):
 # the plant grows at any pH — day by day.
 # ───────────────────────────────────────────────────────
 def daily_growth_rate(ph):
-    # YOUR CODE HERE ↓
-    pass
+    if 6.0 <= ph <= 7.0:
+        return 1.2
+    elif 5.5 <= ph < 6.0:
+        return 0.7
+    elif 7.0 < ph <= 8.0:
+        return 0.5
+    else:
+        return 0.0
 
 
 # ───────────────────────────────────────────────────────
@@ -84,8 +89,12 @@ def daily_growth_rate(ph):
 # experiment log.
 # ───────────────────────────────────────────────────────
 def health_status(ph):
-    # YOUR CODE HERE ↓
-    pass
+    if 6.0 <= ph <= 7.0:
+        return "Healthy 🟢"
+    elif 5.5 <= ph < 6.0 or 7.0 < ph <= 8.0:
+        return "Struggling 🟡"
+    else:
+        return "Failed 🔴"
 
 
 # ── Test all three functions ──────────────────────────
